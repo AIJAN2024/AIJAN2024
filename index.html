@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>陶成 - 开发者 / 数字世界探索者</title>
+    <style>
+        /* ========== 全局样式 ========== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: #0f0f0f;
+            color: #e0e0e0;
+            line-height: 1.7;
+        }
+        a { color: #a78bfa; text-decoration: none; transition: color 0.3s; }
+        a:hover { color: #c4b5fd; }
+
+        /* ========== 导航栏 ========== */
+        nav {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            background: rgba(15,15,15,0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            display: flex; justify-content: center; gap: 2rem;
+            padding: 1rem 0;
+        }
+        nav a {
+            color: #9ca3af; font-weight: 500; font-size: 0.95rem;
+            letter-spacing: 0.5px; transition: color 0.3s;
+        }
+        nav a:hover { color: #fff; }
+
+        /* ========== 区块通用 ========== */
+        section {
+            max-width: 1000px; margin: 0 auto;
+            padding: 100px 24px;
+        }
+        section h2 {
+            font-size: 2.2rem; font-weight: 700;
+            margin-bottom: 2rem; color: #fff;
+            display: flex; align-items: center; gap: 12px;
+        }
+        section h2::after {
+            content: ''; flex: 1; height: 1px;
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* ========== 英雄区域 ========== */
+        .hero {
+            min-height: 100vh; display: flex;
+            flex-direction: column; justify-content: center;
+            align-items: center; text-align: center;
+        }
+        .hero .avatar {
+            width: 120px; height: 120px; border-radius: 50%;
+            background: linear-gradient(135deg, #a78bfa, #f472b6);
+            margin-bottom: 2rem;
+        }
+        .hero h1 { font-size: 3.2rem; font-weight: 300; color: #fff; }
+        .hero h1 strong { font-weight: 800; background: linear-gradient(135deg, #a78bfa, #f472b6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero .tagline { font-size: 1.3rem; color: #9ca3af; margin-top: 0.5rem; }
+        .hero .intro { font-size: 1.1rem; color: #6b7280; margin-top: 1rem; max-width: 500px; }
+
+        /* ========== 卡片式布局 ========== */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+        .card {
+            background: #1a1a1a; border: 1px solid #2a2a2a;
+            border-radius: 16px; overflow: hidden;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+        .card:hover { transform: translateY(-4px); border-color: #a78bfa; }
+        .card-img {
+            width: 100%; height: 180px; object-fit: cover;
+            background: #252525; display: flex;
+            align-items: center; justify-content: center;
+            color: #4b5563; font-size: 0.9rem;
+        }
+        .card-body { padding: 20px; }
+        .card-body h3 { color: #fff; margin-bottom: 8px; font-size: 1.2rem; }
+        .card-body p { color: #9ca3af; font-size: 0.9rem; margin-bottom: 12px; }
+        .card-body .tag {
+            display: inline-block; background: #252525;
+            color: #a78bfa; padding: 4px 12px;
+            border-radius: 20px; font-size: 0.8rem;
+            margin-right: 6px; margin-bottom: 6px;
+        }
+
+        /* ========== 技能标签 ========== */
+        .skills-container { display: flex; flex-wrap: wrap; gap: 12px; }
+        .skill-tag {
+            background: #1a1a1a; border: 1px solid #2a2a2a;
+            color: #d1d5db; padding: 10px 24px;
+            border-radius: 40px; font-weight: 500;
+            transition: all 0.3s; cursor: default;
+        }
+        .skill-tag:hover { border-color: #a78bfa; color: #a78bfa; }
+
+        /* ========== 联系区域 ========== */
+        .contact-links { display: flex; gap: 24px; flex-wrap: wrap; }
+        .contact-links a {
+            background: #1a1a1a; border: 1px solid #2a2a2a;
+            padding: 12px 28px; border-radius: 40px;
+            font-weight: 500; transition: all 0.3s;
+        }
+        .contact-links a:hover { border-color: #a78bfa; background: #252525; }
+
+        /* ========== 页脚 ========== */
+        footer {
+            text-align: center; padding: 40px;
+            color: #4b5563; font-size: 0.85rem;
+            border-top: 1px solid #1a1a1a;
+        }
+
+        /* ========== 响应式 ========== */
+        @media (max-width: 768px) {
+            nav { gap: 1rem; }
+            nav a { font-size: 0.85rem; }
+            .hero h1 { font-size: 2.2rem; }
+            section { padding: 60px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==================== 导航栏 ==================== -->
+    <nav>
+        首页
+        关于
+        歌曲
+        游戏
+        技能
+        联系
+    </nav>
+
+    <!-- ==================== 英雄区域 ==================== -->
+    <section id="home" class="hero">
+        <img src="睡美男.jpg" class="avatar" alt="头像">
+        <h1>你好，我是<strong>陶成</strong></h1>
+        <p class="tagline">开发者 / 数字世界探索者</p >
+        <p class="intro">用代码与逻辑，创造简洁而愉悦的数字体验。<br>热爱工程、音乐与一切充满创造力的事物。</p >
+    </section>
+
+    <!-- ==================== 关于我 ==================== -->
+    <section id="about">
+        <h2>关于我</h2>
+        <p style="margin-bottom:1rem; color:#d1d5db;">
+            我是一名热爱技术与创造的开发者，始终相信好的设计与工程，都应该像空气一样——存在感极低，却让一切运转得自然流畅。
+        </p >
+        <p style="margin-bottom:1rem; color:#d1d5db;">
+            在技术的世界里，我习惯用理性的逻辑拆解问题，用简洁的方式构建解决方案，也享受从0到1打磨作品的过程。
+        </p >
+        <p style="color:#d1d5db;">
+            工作之外，我是一个重度音乐爱好者、独立游戏玩家，也热衷于探索机械与数据中的秩序美感。目前在自由的节奏里，持续学习与创作。
+            如果你对我的作品或兴趣有共鸣，欢迎随时联系。
+        </p >
+    </section>
+
+    <!-- ==================== 歌曲专栏 ==================== -->
+    <section id="music">
+        <h2>🎵 歌曲专栏</h2>
+        <p style="color:#9ca3af; margin-bottom:2rem;">分享我最近在听的专辑、单曲和歌单。音乐是我工作的背景音，也是灵感的来源。</p >
+        <div class="grid">
+            <div class="card">
+                <img class="card-img" src="模特.jpg" alt="李荣浩《模特》" loading="lazy">
+                <div class="card-body">
+                    <h3>李荣浩《模特》</h3>
+                    <p>以克制慵懒的唱腔搭配极简编曲，描绘都市爱情里的疏离与遗憾，是李荣浩标志性的都市抒情作品。</p >
+                    <span class="tag">都市抒情</span><span class="tag">极简华语流行</span>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img" src="天后.jpg" alt="陈势安《天后》" loading="lazy">
+                <div class="card-body">
+                    <h3>陈势安《天后》</h3>
+                    <p>歌曲以深情伤感的旋律，唱出感情里卑微迁就与爱而不得的无奈心境。</p >
+                    <span class="tag">伤感情歌</span><span class="tag">华语经典</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 游戏专栏 ==================== -->
+    <section id="games">
+        <h2>🎮 游戏专栏</h2>
+        <p style="color:#9ca3af; margin-bottom:2rem;">记录那些让我沉浸的游戏世界，从剑影江湖到3A大作。</p >
+        <div class="grid">
+            <div class="card">
+                <img class="card-img" src="永劫无间.jpg" alt="永劫无间" loading="lazy">
+                <div class="card-body">
+                    <h3>永劫无间</h3>
+                    <p>植根东方神话，以阴阳神战的永劫轮回为背景，融武侠风骨与冷兵器竞技于一体 。玩家化身侠客，于聚窟洲快意争锋，尽显东方武学的刚柔之美。</p >
+                    <span class="tag">东方武侠</span><span class="tag">冷兵器竞技</span>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img" src="双人成形.jpg" alt="双人成形" loading="lazy">
+                <div class="card-body">
+                    <h3>双人成形</h3>
+                    <p>双人携手闯奇幻秘境，在冒险羁绊中重拾温情。以默契破尽难关，于相伴同行里治愈彼此心灵。</p >
+                    <span class="tag">双人协作</span><span class="tag">奇幻冒险</span>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img" src="幻兽帕鲁.jpg" alt="幻兽帕鲁" loading="lazy">
+                <div class="card-body">
+                    <h3>幻兽帕鲁</h3>
+                    <p>栖于幻岛，御帕鲁以筑家园；开放世界，融生存、驯养与建造于一境。</p >
+                    <span class="tag">幻兽驯养</span><span class="tag">开放世界生存</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 技能 ==================== -->
+    <section id="skills">
+        <h2>我的技能</h2>
+        <div class="skills-container">
+            <span class="skill-tag">UI/UX 设计</span>
+            <span class="skill-tag">Figma</span>
+            <span class="skill-tag">HTML / CSS</span>
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">React</span>
+            <span class="skill-tag">TypeScript</span>
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">摄影</span>
+            <span class="skill-tag">音乐制作</span>
+        </div>
+    </section>
+
+    <!-- ==================== 联系方式 ==================== -->
+    <section id="contact">
+        <h2>联系我</h2>
+        <p style="color:#9ca3af; margin-bottom:1.5rem;">欢迎合作、交流，或只是打个招呼 👋</p >
+        <p style="margin-bottom:1.5rem; color:#d1d5db;">2098039743@qq.com</p >
+       <div class="contact-links">
+         <a href="https://www.douyin.com/jingxuan">抖音</a>
+         <a href="https://y.qq.com/n/ryqq_v2/profile/like/song">QQ音乐</a>
+         <a href="https://space.bilibili.com/1757042568?spm_id_from=333.1007.0.0">b站</a>
+       </div>
+    </section>
+
+    <!-- ==================== 页脚 ==================== -->
+    <footer>
+        <p>© 2026 陶成. 保留所有权利. 自己动手，丰衣足食。</p >
+    </footer>
+
+    <!-- ==================== 平滑滚动脚本 ==================== -->
+    <script>
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+    <script>
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
